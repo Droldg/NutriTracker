@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User login</title>
+    <link rel="stylesheet" href="../CSS/Login.css">
+    <link rel="stylesheet" href="../CSS/Navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>
+                <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
+            </h1>
+        </header>
+
+        <div class="siden">
+
+            <div class="login-container">
+                <h1><b>Sign up</b></h1>
+                <form>
+                    <input type="name" id="full-name" placeholder="Full name" required>
+                    <input type="email" id="email" placeholder="Email" required autocomplete="new-username">
+                    <input type="number" id="phone-number" placeholder="Phone Number" required>
+                    <input type="age" id="age" placeholder="Age" required>
+                    <input type="gender" id="gender" placeholder="Gender" required>
+                    <input type="weight" id="weight" placeholder="Weight in kg" required>
+                    <input type="height" id="height" placeholder="Height in cm" required>
+                    <input type="username" id="username" placeholder="Username" required autocomplete="new-username">
+                    <input type="password" id="password" placeholder="Password" required autocomplete="new-password">
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" required autocomplete="new-password">
+                    <p id="fejlTekst"></p>
+                    <input id="knap" onclick="SignUp()" type="submit" value="Sign up">
+                </form>
+            </div>
+        </div>
+
+</body>
+<script src="../JS/register.js"></script>
+
+</html>

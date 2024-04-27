@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTracker Meal Creator 2</title>
+    <link rel="stylesheet" href="../CSS/MealCreator2.css">
+    <link rel="stylesheet" href="../CSS/Navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>
+                <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
+            </h1>
+            <nav>
+                <ul>
+                    <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
+                    <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
+                    <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
+                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
+                    <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
+                    <li><a href="../HTML/Profil.html">Profile</a></li>
+                    <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+        <div class="container">
+            <div class="layout">
+                <h2 class="title">Meal Creator - Find food items and incorporate them into your meal.</h2>
+                <p class="MealName">Name your meal: <input type="text" placeholder="Meal Name..." id="mealNameInput"></p>
+                <p class="FoodItems">Which food items will be in this meal?<input type="text" placeholder="Food Item(s)..." id="searchInput" list="suggestionsDatalist">
+                    <datalist id="suggestionsDatalist"></datalist></p>
+                <p class="Grams">How many grams of the ingredient are you adding per 1000 grams of the meal? (in grams)
+                    <input type="text" placeholder="For Example, 100..." id="gramsInput">
+                    <button id="searchButton">Add this ingredient</button>
+                </p> <!-- De mange id'er der bliver anvendt er alle fra min JS Fil, som er linket/refereret til øverst på html siden.-->
+                <div class="FinalItems">Your ingredients for now:
+                    <ul id="displayContainer">
+                        <!-- Ingredienser tilføjet af JavaScript vil dukke op her -->
+                    </ul>
+                <div id="displayNutrition"></div>
+                <a href="../HTML/MealCreator.html">
+                    <button id="saveMealButton">Save Meal</button>
+                </a>
+            </div>
+        </div>
+        <script src="../JS/MealCreator2API.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+.login-container {
+    position: relative;
+    background-color: #F5F5F5;
+    width: 40vh;
+    height: 65vh;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7%;
+
+}
+
+.login-container input[type="name"],
+.login-container input[type="email"],
+.login-container input[type="number"],
+.login-container input[type="username"],
+.login-container input[type="gender"],
+.login-container input[type="weight"],
+.login-container input[type="age"],
+.login-container input[type="height"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 1vh;
+    margin-bottom: 1vh;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.login-container input[type="submit"] {
+    margin-top: 2.5vh;
+    padding: 1vh;
+    background-color: #91c789;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.login-container input {
+    border-color: black;
+    border-radius: 6px;
+}
+
+.login-container form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.green-border {
+    border: 2px solid green;
+}
+
+.blue-text {
+    color: blue
+}
+
+.siden {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fejlTekst {
+    color: red; 
+    position: absolute;
+    bottom: 5vh;
+    width: 100%;
+    text-align: center;
+}
+
+#gemt {
+    width: 100%;
+    padding: 1vh;
+    margin-bottom: 1vh;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    
+}

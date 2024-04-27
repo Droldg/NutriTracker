@@ -1,0 +1,51 @@
+:root {
+  --primary-color: #91c789;
+  --secondary-green: #def6d8;
+  --black-scale-1: #000000;
+  --black-scale-6: #9e9e9e;
+  --black-scale-5: #757575;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    background: white;
+    
+}
+
+.app-container{
+    text-align: center;
+}
+
+.app-header{
+    display:flex;
+    align-items: center;
+    background: #DEF6D8;
+    padding: 15px;
+}
+
+.app-header h1 {
+    margin: 0;
+    margin-right: 75px;
+}
+
+.app-header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.app-header nav ul li {
+    display: inline;
+    margin: 30px;
+    font-size: 20px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}

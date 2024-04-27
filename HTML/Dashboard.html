@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTracker Dashboard</title>
+    <link rel="stylesheet" href="../CSS/Dashboard.css">
+    <link rel="stylesheet" href="../CSS/Navbar.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
+</head>
+<body>
+    
+<div class="app-container">
+        <header class="app-header">
+            <h1>
+                <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
+            </h1>
+            <nav>
+                <ul>
+                    <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
+                    <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
+                    <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
+                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
+                    <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
+                    <li><a href="../HTML/Profil.html">Profile</a></li>
+                    <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                </ul>
+            </nav>
+        </header>
+    <main class="dashboard">
+        <h2>Dashboard</h2>
+        <div class="resultat-container">
+
+            <div class="resultat-card">
+                <h3>Meals Today</h3>
+                <p id="meals-today">0</p> 
+                <span>Meals consumed today</span>
+            </div>
+            
+            <div class="resultat-card">
+                <h3>Energy Today</h3>
+                <p id="energy-today">0 kcal</p> 
+                <span>Energy consumed today</span>
+            </div>
+            
+            <div class="resultat-card">
+                <h3>Water Today</h3>
+                <p id="water-today">0 L</p> 
+                <span>Water consumed today</span>
+            </div>
+            
+            <div class="resultat-card">
+                <h3>Protein Today</h3>
+                <p id="protein-today">0 g</p> 
+                <span>Protein consumed today</span>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="../JS/DashboardAPI.js"></script>
+</body>
+</html>

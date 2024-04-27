@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTracker Meal Creator</title>
+    <link rel="stylesheet" href="../CSS/MealCreator.css">
+    <link rel="stylesheet" href="../CSS/Navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
+    
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>
+                <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
+            </h1>
+            <nav>
+                <ul>
+                    <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
+                    <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
+                    <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
+                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
+                    <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
+                    <li><a href="../HTML/Profil.html">Profile</a></li>
+                    <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="meal-creator">
+                <div class="header-container">
+                    <h2 class="meal-creator-title">Meal Creator</h2>
+                    <div class="button-container">
+                        <a href="../HTML/MealCreator2.html">
+                            <button class="plus-button2">+</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="table-header">
+                    <div class="header-item"></div>
+                    <div class="header-item">Meal Name</div>
+                    <div class="header-item">Total Kcal, Protein, Fat, Fibers,  pr. 100g</div>
+                    <div class="header-item">Added on</div>
+                    <div class="header-item"># Ingredients</div>
+                    <div class="header-item"></div>
+
+                </div>
+                <div id="meals-list-container"></div>
+            </div>
+        </div>
+<script src="../JS/MealCreatorAPI.js"></script>
+</body>
+
+</html>

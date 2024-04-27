@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTracker Meal Tracker</title>
+    <link rel="stylesheet" href="../CSS/MealTracker.css">
+    <link rel="stylesheet" href="../CSS/Navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>
+                <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
+            </h1>
+            <nav>
+                <ul>
+                    <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
+                    <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
+                    <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
+                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
+                    <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
+                    <li><a href="../HTML/Profil.html">Profile</a></li>
+                    <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="meal-tracker">
+                <div class="header-container">
+                    <h2 class="meal-tracker-title">Meal Tracker</h2>
+                    <div class="button-container">
+                        <button class="plus-button1" onclick="addWaterTracking()">+</button> 
+                        <!--- Det viser en prompt, der spørger brugeren om hvor meget vand de har drukket. Derefter vil dette blive tilføjet, som "meal" til vores "MealTracker"-->
+                        <a href="../HTML/MealTracker2.html">
+                        <button class="plus-button2">+</button>
+                        </a>
+                    </div>
+                </div>
+                    <div class="table-header">
+                    <div class="header-item">Meal Name</div>
+                    <div class="header-item">Meal</div>
+                    <div class="header-item">Weight & Nutrition informations</div>
+                    <div class="header-item">Water</div>
+                    <div class="header-item">Added on</div>
+                    <div class="header-item"></div>
+                    </div>
+                <div id="mealsList"></div>
+            </div>
+        </div>
+    </div>  
+    <script src="../JS/MealTrackerAPI.js"></script>
+</body>
+</html>

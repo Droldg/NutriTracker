@@ -1,0 +1,93 @@
+.header-container{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.meal-tracker-title{
+    margin-left: 0;
+}
+
+
+.container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.meal-tracker {
+    font-family: "Nunito", sans-serif;
+    border: 2px solid #99d9de;
+    border-radius: 10px;
+    width: 1100px;
+}
+
+.table-header, .table-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    align-items: center;
+}
+
+.table-row {
+    background-color: #DEF6D8;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.header-item, .row-item {
+    flex: 1;
+    text-align: center;
+}
+
+
+button{
+    border: 0;
+    background-color: #DEF6D8;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.plus-button1, .plus-button2 {
+    margin-left: 10px;
+}
+
+.plus-button1{
+    background-color: #569bd5;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+}
+
+.plus-button1:hover{
+    background-color:#99d9de ;
+}
+
+
+
+.plus-button2{
+    background-color: #91c789;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.plus-button2:hover{
+    background-color:#DEF6D8 ;
+}

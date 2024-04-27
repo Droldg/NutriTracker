@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTracker Meal Report</title>
+    <link rel="stylesheet" href="../CSS/FoodInspector.css">
+    <link rel="stylesheet" href="../CSS/Navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
+    <script src="../JS/FoodInspectorAPI.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>
+                <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
+            </h1>
+            <nav>
+                <ul>
+                    <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
+                    <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
+                    <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
+                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
+                    <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
+                    <li><a href="../HTML/Profil.html">Profile</a></li>
+                    <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="product-info-container">
+                <div class="search-container">
+                    <input type="text" placeholder="Search for food..." id="searchInput" class="search-input">
+                    <button id="searchButton" class="search-button">Search</button>
+                </div>
+                
+                <div id="displayContainer" class="product-info">
+                    <h2>Food Item:</h2>
+                    <p><strong>Product id:</strong></p>
+
+                </div>
+                <div id="displayNutrition" class="nutrition-info">
+                    <h3>Nutrition pr. 100g:</h3>
+                    <p><strong>Energy (kcal):</strong></p>
+                    <p><strong>Protein:</strong></p>
+                    <p><strong>Fiber:</strong></p>
+                    <p><strong>Fat:</strong></p> 
+                </div>
+            </div>
+        </div>
+        
