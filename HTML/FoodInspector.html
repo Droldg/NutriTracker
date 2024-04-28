@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
     <script src="../JS/FoodInspectorAPI.js"></script>
 </head>
+
 <body>
     <div class="app-container">
         <header class="app-header">
@@ -31,22 +33,24 @@
         <div class="container">
             <div class="product-info-container">
                 <div class="search-container">
-                    <input type="text" placeholder="Search for food..." id="searchInput" class="search-input">
+                    <input type="text" placeholder="Search for food..." id="searchInput" class="search-input" list="foodSuggestions">
+                    <datalist id="foodSuggestions"></datalist>
                     <button id="searchButton" class="search-button">Search</button>
                 </div>
                 
                 <div id="displayContainer" class="product-info">
-                    <h2>Food Item:</h2>
-                    <p><strong>Product id:</strong></p>
-
-                </div>
+                    <h2>Food Item: <span class="food-item-name"></span></h2>
+                    <p>Product id: <span class="product-id"></span></p>
+                </div>                
                 <div id="displayNutrition" class="nutrition-info">
                     <h3>Nutrition pr. 100g:</h3>
-                    <p><strong>Energy (kcal):</strong></p>
-                    <p><strong>Protein:</strong></p>
-                    <p><strong>Fiber:</strong></p>
-                    <p><strong>Fat:</strong></p> 
+                    <p class="energy-kcal">Energy (kcal):</p>
+                    <p class="protein">Protein:</p>
+                    <p class="fat">Fat:</p>
+                    <p class="fibers">Fibers:</p> 
                 </div>
             </div>
         </div>
-        
+    </div>
+</body> 
+</html>   

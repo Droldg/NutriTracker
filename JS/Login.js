@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const brugernavn = brugerSession.brugernavn;
         console.log('Brugernavn:', brugernavn);
       
-            window.location.href = '../HTML/Dashboard.html';
+           window.location.href = '../HTML/Dashboard.html';
 
 
     } else {

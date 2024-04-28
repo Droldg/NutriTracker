@@ -4,32 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activity Tracker</title>
-
+    <title>NutriTracker Activity Tracker</title>
+    <link rel="stylesheet" href="../CSS/ActivityTracker.css">
     <link rel="stylesheet" href="../CSS/Navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
-    
 </head>
 
 <body>
     <div class="app-container">
         <header class="app-header">
-            <h1>
-                <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
-            </h1>
-            <nav>
-                <ul>
-                    <li><a href="../HTML/Dashboard.html">Dashboard</a></li>
-                    <li class="active"><a href="../HTML/MealCreator.html">Meal Creator</a></li>
-                    <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
-                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
-                    <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
-                    <li><a href="../HTML/Profil.html">Profile</a></li>
-                </ul>
-            </nav>
+            <div class="app-container">
+                <h1>
+                    <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
+                </h1>
+                <nav>
+                    <ul>
+                        <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
+                        <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
+                        <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
+                        <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
+                        <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
+                        <li><a href="../HTML/Profil.html">Profile</a></li>
+                        <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                    </ul>
+                </nav>
         </header>
 
-<script src="../JS/ActivityTracker.js"></script>
-</body>
+        <div class="container">
+            <div class="dashboard">
+                <h2>Activity Tracker</h2>
+                <div class="resultat-container">
+                    <!-- Container for activity selection -->
+                    <div class="resultat-card">
+                        <h3>Activity Selection</h3>
+                        <select name="activity" id="activity">
+                            <option value="almindelig-gang">Almindelig gang</option>
+                            <!-- Add other activity options here -->
+                        </select>
+                    </div>
 
+                    <!-- Container for burned calories -->
+                    <div class="resultat-card">
+                        <h3>Calories Burned</h3>
+                        <p id="calories-burned">0</p>
+                        <span>kcal/hour</span>
+                    </div>
+
+                    <!-- Container for weight input -->
+                    <div class="resultat-card">
+                        <h3>Change Weight</h3>
+                        <input type="number" id="weight-input" placeholder="Enter weight (kg)">
+                    </div>
+
+                    <!-- Container for basal metabolism -->
+                    <div class="resultat-card">
+                        <h3>Basal Metabolism</h3>
+                        <p id="basal-metabolism">0</p>
+                        <span>MJ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../JS/ActivityTracker.js"></script>
+</body>
 </html>

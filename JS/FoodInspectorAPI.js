@@ -35,32 +35,37 @@ async function searchAndDisplayFood(searchString) {
     }
 }
 
-// Denne funktion bruges til at vise fødevareelementer på min hjemmeside
-function displayFoodItems(foodItems) {
-
-    // Finder containeren, hvor fødevarerne skal vises
-    const displayContainer = document.getElementById('displayContainer');
-    // Rydder containeren for tidligere resultater
-    displayContainer.innerHTML = '';
-
-    // Tjekker om der er nogen fødevarer at vise
-    if (foodItems.length > 0) {
-        // Får det første element fra foodItems arrayet
-        const item = foodItems[0];
-
-        // Opretter en ny div for det første fødevareelement
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('food-item');
-        // Her tilføjer jeg indhold til div'en, herunder fødevarens navn og ID.
-        itemDiv.innerHTML = `
-          <h2>Food Item: ${item.foodName}</h2>
-          <p><strong>Product id: ${item.foodID} <strong></p>
-          `;
-
-        // Tilføjer denne nye div til displayContainer
-        displayContainer.appendChild(itemDiv);
-    };
+// Denne funktion er ny, og bruges til at bevarer fooditem og product id på siden, når man søger på en specifik fødevare.
+function displayFoodItems(foodItem) {
+  // Søger efter eksisterende '.food-item-name' span, opretter en ny hvis den ikke findes
+  let itemNameSpan = document.querySelector('.food-item-name');
+  // Søger efter eksisterende '.product-id' span, opretter en ny hvis den ikke findes
+  let itemIdSpan = document.querySelector('.product-id');
+  
+  // Hvis '.food-item-name' span ikke findes, opretter vi det og tilføjer det til containeren
+  if (!itemNameSpan) {
+      itemNameSpan = document.createElement('span');
+      itemNameSpan.classList.add('food-item-name');
+      // Får fat i containeren hvor navnet skal vises og tilføjer det nye span til denne
+      const nameContainer = document.querySelector('#displayContainer h2');
+      nameContainer.appendChild(itemNameSpan);
+  }
+  
+  // Hvis '.product-id' span ikke findes, opretter vi det og tilføjer det til containeren
+  if (!itemIdSpan) {
+      itemIdSpan = document.createElement('span');
+      itemIdSpan.classList.add('product-id');
+      // Får fat i containeren hvor produkt-id skal vises og tilføjer det nye span til denne
+      const idContainer = document.querySelector('#displayContainer p');
+      idContainer.appendChild(itemIdSpan);
+  }
+  
+  // Opdaterer tekstindholdet i de spans med data fra det pågældende fødevareobjekt
+  itemNameSpan.textContent = foodItem.foodName;
+  itemIdSpan.textContent = foodItem.foodID;
 }
+
+
 
 // Denne asynkron funktion har til formål, at hente ernæringsdata for en specifik fødevare
 async function getNutritionalData(foodID, sortKey) {
@@ -81,6 +86,10 @@ async function getNutritionalData(foodID, sortKey) {
 
     console.log(data)
 }
+
+
+
+
 
 // Denne asynkron funktion har til formål, at vise ernæringsoplysninger for en bestemt fødevare
 
@@ -128,28 +137,94 @@ async function displayNutritionalInfo(foodID) {
     }
 }
 
+
+
+
+
+// Det her er nyt kode for at fremvise food item forslag ved søgning. 
+
+
+
+
+// Debounce funktion for at forhindre for hyppige API-kald
+function debounce(func, delay) {
+    let inDebounce;
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(inDebounce);
+      inDebounce = setTimeout(() => func.apply(context, args), delay);
+    };
+  }
+  
+  // Funktion til at foreslå ingredienser baseret på søgeforespørgslen
+  async function suggestIngredients(searchQuery) {
+    if (!searchQuery) {
+      return;
+    }
+    try {
+      const response = await fetch(`https://nutrimonapi.azurewebsites.net/api/FoodItems/BySearch/${searchQuery}`, {
+        headers: {
+          "X-API-Key": `${apiKey}`,
+        },
+      });
+      if (response.ok) {
+        const foodItems = await response.json();
+        populateSuggestions(foodItems);
+      } else {
+        console.error('Fejl ved indhentning af forslag. Status', response.status);
+      }
+    } catch (error) {
+      console.error('Fejl ved indhentning af forslag:', error);
+    }
+  }
+  
+  // Funktion til at opdatere datalisten med de foreslåede ingredienser
+  function populateSuggestions(foodItems) {
+    const suggestionsDatalist = document.getElementById('foodSuggestions');
+    suggestionsDatalist.innerHTML = ''; // Fjern tidligere forslag
+    foodItems.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.foodName;
+      suggestionsDatalist.appendChild(option);
+    });
+  }
+  
+  // Funktion til at hente og vise ernæringsoplysninger
+  async function searchAndDisplayFood(searchString) {
+    if (!searchString) {
+      return;
+    }
+    try {
+      const foodItems = await searchFood(searchString);
+      if (foodItems && foodItems.length > 0) {
+        displayFoodItems(foodItems[0]);
+        await displayNutritionalInfo(foodItems[0].foodID);
+      }
+    } catch (error) {
+      console.error('Der var en fejl i søge- og visningsfunktionen:', error);
+    }
+  }
+  
+
 // Event listeners for søgefunktionen
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
-
-
-
+  
     searchButton.addEventListener('click', () => {
-        const searchString = searchInput.value;
-        searchAndDisplayFood(searchString);
-
+      const searchString = searchInput.value;
+      searchAndDisplayFood(searchString);
     });
-
-    // Her tilknytter jeg "enter" nøgle til at udløse søgningen.
+  
+    searchInput.addEventListener('input', debounce(() => suggestIngredients(searchInput.value), 500));
+  
     searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            searchAndDisplayFood(searchInput.value);
-
-
-        }
+      if (e.key === 'Enter') {
+        searchAndDisplayFood(searchInput.value);
+      }
     });
-});
+  });
 
 
 
