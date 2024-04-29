@@ -36,11 +36,21 @@
                 <div class="resultat-container">
                     <!-- Container for activity selection -->
                     <div class="resultat-card">
-                        <h3>Activity Selection</h3>
-                        <select name="activity" id="activity">
-                            <option value="almindelig-gang">Almindelig gang</option>
-                            <!-- Add other activity options here -->
+                        <h3>Activity Options</h3>
+                        <select name="activity-options" id="activity-options" onchange="showActivityContainer()">
+                            <option value="" disabled selected>Vælg en aktivitet</option>
+                            <option value="almindelige-hverdagsaktiviteter">Almindelige hverdagsaktiviteter</option>
+                            <option value="sportsaktiviteter">Sportsaktiviteter</option>
+                            <option value="forskellige-typer-arbejde">Forskellige typer arbejde</option>
                         </select>
+                    </div>
+
+                    <!-- Container for selected activity -->
+                    <div id="selected-activity-container" style="display: none;">
+                        <div class="resultat-card">
+                            <h3>Selected Activity</h3>
+                            <p id="selected-activity"></p>
+                        </div>
                     </div>
 
                     <!-- Container for burned calories -->
@@ -68,4 +78,3 @@
     </div>
     <script src="../JS/ActivityTracker.js"></script>
 </body>
-</html>

@@ -22,7 +22,7 @@ body, html {
     display:flex;
     align-items: center;
     background: #DEF6D8;
-    padding: 15px;
+    padding: 1.5vh;
 }
 
 .app-header h1 {
