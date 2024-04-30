@@ -1,4 +1,46 @@
-function showActivityContainer() {
+// Ved indlæsning af siden
+document.addEventListener('DOMContentLoaded', async () => {
+    const categoriesResponse = await fetch('/api/categories');
+    const categories = await categoriesResponse.json();
+    
+    const categorySelect = document.getElementById('activity-options');
+    categories.forEach(category => {
+      const option = document.createElement('option');
+      option.value = category.Kategori;
+      option.textContent = category.Kategori;
+      categorySelect.appendChild(option);
+    });
+  });
+  
+  // Når en kategori er valgt
+  document.getElementById('activity-options').addEventListener('change', async (event) => {
+    const category = event.target.value;
+    const activitiesResponse = await fetch(`/api/activities/${category}`);
+    const activities = await activitiesResponse.json();
+  
+    const activitySelect = document.getElementById('specific-activity-options');
+    activitySelect.innerHTML = ''; // Ryd tidligere aktiviteter
+    activities.forEach(activity => {
+      const option = document.createElement('option');
+      option.value = activity.AktivitetsNavn;
+      option.textContent = activity.AktivitetsNavn;
+      option.dataset.kcalPerTime = activity.KcalPerTime; // Gem kaloriedata som data-attribute
+      activitySelect.appendChild(option);
+    });
+  });
+  
+  // Når en aktivitet er valgt
+  document.getElementById('specific-activity-options').addEventListener('change', (event) => {
+    const kcalPerTime = event.target.options[event.target.selectedIndex].dataset.kcalPerTime;
+    document.getElementById('calories-burned').textContent = kcalPerTime;
+  });
+  
+
+
+
+
+
+/** function showActivityContainer() {
         var activityOptions = document.getElementById("activity-options");
         var selectedActivityContainer = document.getElementById("selected-activity-container");
         var selectedActivity = document.getElementById("selected-activity");
@@ -65,7 +107,7 @@ function showActivityContainer() {
                 </select>
             `;
         }
-    }
+    } **/
 
 
 

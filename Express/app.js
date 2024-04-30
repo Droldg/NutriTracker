@@ -125,6 +125,29 @@ app.post('/checkLogin', async (req, res) => {
     }
 });
 
+// Dette er for ActivityTracker, hvor vi gør bruge af vores sql database, 
+// for at tilgå data derfra.
+app.get('/api/categories', async (req, res) => {
+    try {
+      const result = await pool.request()
+        .query('SELECT DISTINCT Kategori FROM dbo.aktivitetData');
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
+  
+  app.get('/api/activities/:category', async (req, res) => {
+    try {
+      const category = req.params.category;
+      const result = await pool.request()
+        .input('Kategori', mssql.NVarChar, category)
+        .query('SELECT AktivitetsNavn, KcalPerTime FROM dbo.aktivitetData WHERE Kategori = @Kategori');
+      res.json(result.recordset);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
 
 
 
