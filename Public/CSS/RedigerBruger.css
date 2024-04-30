@@ -1,0 +1,67 @@
+.info {
+    display: flex;
+    
+}
+.Rediger {
+    background-color: #DEF6D8;
+    width: 100%;
+    height: 87vh;
+    margin: 7px;
+    border-radius: 10px;
+}
+
+.rediger-container {
+    position: relative;
+    background-color: #F5F5F5;
+    width: 40vh;
+    height: 65vh;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7%;
+
+}
+
+
+
+.rediger-container input[type="gender"],
+.rediger-container input[type="weight"],
+.rediger-container input[type="age"],
+.rediger-container input[type="height"],
+.rediger-container input[type="password"] {
+    width: 100%;
+    padding: 1vh;
+    margin-bottom: 1vh;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.rediger-container input[type="submit"] {
+    margin-top: 2.5vh;
+    padding: 1vh;
+    background-color: #91c789;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.rediger-container input {
+    border-color: black;
+    border-radius: 6px;
+}
+
+.rediger-container form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.siden {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

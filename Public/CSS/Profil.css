@@ -1,7 +1,7 @@
 .sideBar {
     background-color: #DEF6D8;
     width: 35vh;
-    height: 40vh;
+    height: auto;
     margin: 7px;
     border-radius: 10px;
 

@@ -2,11 +2,11 @@ const express = require('express');
 const mssql = require('mssql');
 const cors = require('cors');
 const morgan = require('morgan');
-
 const app = express();
+const config = require('./config.js');
 
 // Konfiguration af SQL Server-forbindelsesparametre
-const config = {
+/** const config = {
     user: 'kali', // Erstatt med dit brugernavn
     password: 'Densortesatan1234', // adgangskode
     server: 'nutritracker-cbs.database.windows.net', // SQL Server-serveradresse
@@ -15,7 +15,7 @@ const config = {
         encrypt: true, // Sørg for at aktivere kryptering
         trustServerCertificate: true // Brug dette kun, hvis du kører på Windows Azure
     }
-};
+}; **/
 
 // Opret en SQL Server-pool
 const pool = new mssql.ConnectionPool(config);
@@ -148,6 +148,40 @@ app.get('/api/categories', async (req, res) => {
       res.status(500).send(error.message);
     }
   });
+
+  app.put('/redigerBruger', async (req, res) => {
+    try {
+        const { username, age, gender, weight, height, password } = req.body;
+
+        // Udfør SQL-opdateringsforespørgsel baseret på brugernavn
+        const query = `
+            UPDATE dbo.brugerData
+            SET Age = @age,
+                Gender = @gender,
+                Weight = @weight,
+                Height = @height,
+                Password = @password
+            WHERE Username = @username;
+        `;
+
+        // Udfør forespørgslen
+        const result = await pool.request()
+            .input('username', mssql.NVarChar, username)
+            .input('age', mssql.NVarChar, age)
+            .input('gender', mssql.NVarChar, gender)
+            .input('weight', mssql.NVarChar, weight)
+            .input('height', mssql.NVarChar, height)
+            .input('password', mssql.NVarChar, password)
+            .query(query);
+
+        // Send svar til klienten
+        res.json({ message: 'Brugeroplysninger opdateret.' });
+    } catch (error) {
+        console.error('Kan ikke opdatere brugeroplysninger:', error);
+        res.status(500).json({ message: 'Der opstod en fejl under opdatering af brugeroplysninger.' });
+    }
+});
+
 
 
 

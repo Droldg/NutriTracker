@@ -7,6 +7,8 @@
     <title>Profile</title>
     <link rel="stylesheet" href="../CSS/Navbar.css">
     <link rel="stylesheet" href="../CSS/Profil.css">
+    <link rel="stylesheet" href="../CSS/Logud.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
     
 </head>
@@ -30,14 +32,23 @@
         </header>
 </head>
 <body>
+<div class="info">
     <div class="sideBar">
         <div class="link">
-            <a href="logout.html" class="button">Logud</a>
-            <a href="edituserdata.html" class="button">Rediger brugerdata</a>
-            <a href="deleteprofile.html" class="button">Slet Profil</a>
+            <a href="./Logud.html" class="button">Log ud</a>
+            <a href="./RedigerBruger.html" class="button">Rediger brugerdata</a>
+            <a href="./SletProfil.html" class="button">Slet Profil</a>
         </div>
     </div>
+    <div class="Logud">
+        <h1>Log ud</h1>
+        <p>Her kan du logge ud af din profil</p>
+        <button onclick="logUd(username)" class="knap">Log ud</button>
+
+    </div>
+</div>
 
 
 </body>
+<script src="../JS/Logud.js"></script>
 </html>

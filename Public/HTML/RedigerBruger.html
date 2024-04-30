@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../CSS/Navbar.css">
+    <link rel="stylesheet" href="../CSS/Profil.css">
+    <link rel="stylesheet" href="../CSS/RedigerBruger.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
+    
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>
+                <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../HTML/Dashboard.html">Dashboard</a></li>
+                    <li class="active"><a href="../HTML/MealCreator.html">Meal Creator</a></li>
+                    <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
+                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
+                    <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
+                    <li><a href="../HTML/Profil.html">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+</head>
+<body>
+<div class="info">
+    <div class="sideBar">
+        <div class="link">
+            <a href="./Logud.html" class="button">Log ud</a>
+            <a href="./RedigerBruger.html" class="button">Rediger brugerdata</a>
+            <a href="./SletProfil.html" class="button">Slet Profil</a>
+        </div>
+    </div>
+    <div class="Rediger">
+        <div class="siden">
+
+            <div class="rediger-container">
+                <h1><b>Rediger</b></h1>
+                <form>
+                    <input type="age" id="age" placeholder="Age" required>
+                    <input type="gender" id="gender" placeholder="Gender" required>
+                    <input type="weight" id="weight" placeholder="Weight in kg" required>
+                    <input type="height" id="height" placeholder="Height in cm" required>
+                    <input type="password" id="password" placeholder="Password" required autocomplete="new-password">
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" required autocomplete="new-password">
+                    <p id="fejlTekst"></p>
+                    <input id="knap" type="submit" value="Opdater Bruger-Informationer">
+                </form>
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+
+</body>
+<script src="../JS/redigerBruger.js"></script>
+</html>
