@@ -1,116 +1,55 @@
 // Ved indlæsning af siden
 document.addEventListener('DOMContentLoaded', async () => {
-    const categoriesResponse = await fetch('/api/categories');
-    const categories = await categoriesResponse.json();
-    
     const categorySelect = document.getElementById('activity-options');
-    categories.forEach(category => {
-      const option = document.createElement('option');
-      option.value = category.Kategori;
-      option.textContent = category.Kategori;
-      categorySelect.appendChild(option);
-    });
-  });
-  
-  // Når en kategori er valgt
-  document.getElementById('activity-options').addEventListener('change', async (event) => {
-    const category = event.target.value;
-    const activitiesResponse = await fetch(`/api/activities/${category}`);
-    const activities = await activitiesResponse.json();
-  
-    const activitySelect = document.getElementById('specific-activity-options');
-    activitySelect.innerHTML = ''; // Ryd tidligere aktiviteter
-    activities.forEach(activity => {
-      const option = document.createElement('option');
-      option.value = activity.AktivitetsNavn;
-      option.textContent = activity.AktivitetsNavn;
-      option.dataset.kcalPerTime = activity.KcalPerTime; // Gem kaloriedata som data-attribute
-      activitySelect.appendChild(option);
-    });
-  });
-  
-  // Når en aktivitet er valgt
-  document.getElementById('specific-activity-options').addEventListener('change', (event) => {
-    const kcalPerTime = event.target.options[event.target.selectedIndex].dataset.kcalPerTime;
-    document.getElementById('calories-burned').textContent = kcalPerTime;
-  });
-  
+    if (!categorySelect) return;
 
-
-
-
-
-/** function showActivityContainer() {
-        var activityOptions = document.getElementById("activity-options");
-        var selectedActivityContainer = document.getElementById("selected-activity-container");
-        var selectedActivity = document.getElementById("selected-activity");
-
-        selectedActivityContainer.style.display = "block";
-        selectedActivity.textContent = activityOptions.value;
-
-        if (activityOptions.value === "almindelige-hverdagsaktiviteter") {
-            selectedActivity.innerHTML = `
-                <select name="specific-activity-options" id="specific-activity-options">
-                    <option value="" disabled selected>Vælg en aktivitet</option>
-                    <option value="almindelig-gang">Almindelig gang</option>
-                    <option value="gang-ned-af-trapper">Gang ned af trapper</option>
-                    <option value="gang-op-af-trapper">Gang op af trapper</option>
-                    <option value="slå-græs-med-manuel-græsslåmaskine">Slå græs med manuel græsslåmaskine</option>
-                    <option value="lave-mad-og-redde-senge">Lave mad og redde senge</option>
-                    <option value="luge-ukrudt">Luge ukrudt</option>
-                    <option value="rydde-sne">Rydde sne</option>
-                    <option value="læse-eller-se-tv">Læse eller se TV</option>
-                    <option value="stå-oprejst">Stå oprejst</option>
-                    <option value="cykling-i-roligt-tempo">Cykling i roligt tempo</option>
-                    <option value="tørre-støv-af">Tørre støv af</option>
-                    <option value="vaske-gulv">Vaske gulv</option>
-                    <option value="pudse-vinduer">Pudse vinduer</option>
-                </select>
-            `; 
-        } else if (activityOptions.value === "sportsaktiviteter") {
-            selectedActivity.innerHTML = `
-                <select name="specific-activity-options" id="specific-activity-options">
-                    <option value="" disabled selected>Vælg en aktivitet</option>
-                    <option value="cardio">Cardio</option>
-                    <option value="hård-styrketræning">Hård styrketræning</option>
-                    <option value="badminton">Badminton</option>
-                    <option value="volleyball">Volleyball</option>
-                    <option value="bordtennis">Bordtennis</option>
-                    <option value="dans-i-højt-tempo">Dans i højt tempo</option>
-                    <option value="dans-i-moderat-tempo">Dans i moderat tempo</option>
-                    <option value="fodbold">Fodbold</option>
-                    <option value="rask-gang">Rask gang</option>
-                    <option value="golf">Golf</option>
-                    <option value="håndbold">Håndbold</option>
-                    <option value="squash">Squash</option>
-                    <option value="jogging">Jogging</option>
-                    <option value="langrend">Langrend</option>
-                    <option value="løb-i-moderat-tempo">Løb i moderat tempo</option>
-                    <option value="løb-i-hurtigt-tempo">Løb i hurtigt tempo</option>
-                    <option value="ridning">Ridning</option>
-                    <option value="skøjteløb">Skøjteløb</option>
-                    <option value="svømning">Svømning</option>
-                    <option value="cykling-i-højt-tempo">Cykling i højt tempo</option>
-                </select>
-            `;
-        } else if (activityOptions.value === "forskellige-typer-arbejde") {
-            selectedActivity.innerHTML = `
-                <select name="specific-activity-options" id="specific-activity-options">
-                    <option value="" disabled selected>Vælg en aktivitet</option>
-                    <option value="bilreparation">Bilreparation</option>
-                    <option value="gravearbejde">Gravearbejde</option>
-                    <option value="landbrugsarbejde">Landbrugsarbejde</option>
-                    <option value="let-kontorarbejde">Let kontorarbejde</option>
-                    <option value="male-hus">Male hus</option>
-                    <option value="murerarbejde">Murerarbejde</option>
-                    <option value="hugge-og-slæbe-på-brænde">Hugge og slæbe på brænde</option>
-                </select>
-            `;
+    try {
+        const categoriesResponse = await fetch('http://localhost:3000/api/categories');
+        if (!categoriesResponse.ok) {
+            throw new Error(`HTTP error! Status: ${categoriesResponse.status}`);
         }
-    } **/
+        const categories = await categoriesResponse.json();        
+        categories.forEach(category => {
+          const option = new Option(category.Kategori, category.Kategori);
+          categorySelect.add(option);
+        });
+    } catch (error) {
+        console.error('Failed to fetch categories:', error.message);
+        // Vis evt. en fejlmeddelelse på siden
+    }
+});
 
+// Når en kategori er valgt
+document.getElementById('activity-options')?.addEventListener('change', async (event) => {
+    const activitySelect = document.getElementById('specific-activity-options');
+    if (!activitySelect) return;
 
+    try {
+        const category = event.target.value;
+        const activitiesResponse = await fetch(`http://localhost:3000/api/activities/${category}`);
+        if (!activitiesResponse.ok) {
+            throw new Error(`HTTP error! Status: ${activitiesResponse.status}`);
+        }
+        const activities = await activitiesResponse.json();
+        activitySelect.innerHTML = ''; // Ryd tidligere aktiviteter
+        activitySelect.appendChild(new Option("Select Specific Activity", "")); // Gør det muligt at vælge en aktivitet, istedet for at man bliver tilgivet en til at starte med. 
+        activities.forEach(activity => {
+          const option = new Option(activity.AktivitetsNavn, activity.AktivitetsNavn);
+          option.dataset.kcalPerTime = activity.KcalPerTime; // Gem kaloriedata som data-attribute
+          activitySelect.add(option);
+        });
+    } catch (error) {
+        console.error('Failed to fetch activities:', error.message);
+        // Vis evt. en fejlmeddelelse på siden
+    }
+});
 
+// Når en aktivitet er valgt
+document.getElementById('specific-activity-options')?.addEventListener('change', (event) => {
+    const kcalPerTime = event.target.options[event.target.selectedIndex].dataset.kcalPerTime;
+    const caloriesBurnedDisplay = document.getElementById('calories-burned');
+    if (caloriesBurnedDisplay) caloriesBurnedDisplay.textContent = kcalPerTime;
+});
 
 
 

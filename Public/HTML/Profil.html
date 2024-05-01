@@ -7,6 +7,9 @@
     <title>Profile</title>
     <link rel="stylesheet" href="../CSS/Navbar.css">
     <link rel="stylesheet" href="../CSS/Profil.css">
+    <link rel="stylesheet" href="../CSS/RedigerBruger.css">
+    <link rel="stylesheet" href="../CSS/Logud.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
     
 </head>
@@ -25,19 +28,31 @@
                     <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
                     <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
                     <li><a href="../HTML/Profil.html">Profile</a></li>
+                    <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
                 </ul>
             </nav>
         </header>
 </head>
 <body>
-    <div class="sideBar">
-        <div class="link">
-            <a href="Logud.html" class="button">Log ud</a>
-            <a href="RedigerBruger.html" class="button">Rediger brugerdata</a>
-            <a href="SletProfil.html" class="button">Slet Profil</a>
+    <div class="info">
+        <div class="sideBar">
+            <div class="link">
+                <a href="../HTML/Logud.html" id="logUd" class="button">Log ud</a>
+                <a href="../HTML/RedigerBruger.html" id="Rediger" class="button">Rediger brugerdata</a>
+                <a href="SletProfil.html" id="Slet" class="button">Slet Profil</a>
+            </div>
+        </div>
+        <div id="info-box">
+            <p>Her er det muligt at bruge menuen i venstre side, til at omdirigere til diverse bruger-funktioner</p>
         </div>
     </div>
 
 
 </body>
+
+    <script src="../JS/LoginTjek.js"></script>
+    <script src="../JS/Profil.js"></script>
+
+
+
 </html>

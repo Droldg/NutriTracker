@@ -20,7 +20,7 @@ function loadMeals() {
             <div class="row-item">${meal.ingredients.length}</div>
             
             <div class="row-item">
-            <button class="delete-button" data-meal-id="${meal.id}"><img src="Delete Knap.PNG" alt="Delete"></button>
+            <button class="delete-button" data-meal-id="${meal.id}"><img src="../PNG/Delete Knap.PNG" alt="Delete"></button>
             </div>
         `; // Ovenstående informationer bliver lagt direkte ind i vores HTML. 
 

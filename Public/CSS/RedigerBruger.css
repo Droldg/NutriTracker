@@ -39,14 +39,15 @@
     border-radius: 3px;
 }
 
-.rediger-container input[type="submit"] {
-    margin-top: 2.5vh;
+#knap {
     padding: 1vh;
     background-color: #91c789;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    width: 100%;
+    text-align: center;
 }
 
 .rediger-container input {

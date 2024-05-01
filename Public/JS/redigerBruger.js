@@ -1,3 +1,6 @@
+
+
+
 function opdater(event) {
     event.preventDefault();
 
@@ -45,7 +48,7 @@ function fetchAndUpdate(userData) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data); // Log server response
+        console.log(data.message); // Log server response
         // Håndter svar fra serveren her
     })
     .catch(error => {

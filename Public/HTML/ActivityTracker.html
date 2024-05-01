@@ -13,7 +13,6 @@
 <body>
     <div class="app-container">
         <header class="app-header">
-            <div class="app-container">
                 <h1>
                     <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
                 </h1>
@@ -36,21 +35,22 @@
                 <div class="resultat-container">
                     <!-- Container for activity selection -->
                     <div class="resultat-card">
-                        <h3>Specific Activity</h3>
-                        <select name="specific-activity-options" id="specific-activity-options">
-                            <!-- Dynamically filled options will go here -->
+                        <h3>Activity Options</h3>
+                        <select name="activity-options" id="activity-options">
+                            <option value="" disabled selected>Select Activity</option>
+                            <!-- Her har man mulighed for at vælge mellem de "overall" aktiviteter som man har haft mulighed for fra SQL-databasen. -->
                         </select>
                     </div>
 
-                    <!-- Container for selected activity -->
-                    <div id="selected-activity-container" style="display: none;">
-                        <div class="resultat-card">
-                            <h3>Selected Activity</h3>
-                            <p id="selected-activity"></p>
-                        </div>
+                    <!-- Container for specific activity selection -->
+                    <div class="resultat-card">
+                        <h3>Specific Activity</h3>
+                        <select name="specific-activity-options" id="specific-activity-options">
+                            <option value="" disabled selected>Select Specific Activity</option>
+                            <!-- Her vil der automatisk blive udfyldt med de aktiviteter for den valgte kategori.-->
+                        </select>
                     </div>
 
-                    <!-- Container for burned calories -->
                     <div class="resultat-card">
                         <h3>Calories Burned</h3>
                         <p id="calories-burned">0</p>

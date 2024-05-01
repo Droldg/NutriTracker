@@ -47,7 +47,10 @@ document.querySelector('.green-bg').addEventListener('click', async function() {
     // Gem brugerSession i local storage
     localStorage.setItem('brugerSession', JSON.stringify(brugerSession));
 
-
+    setTimeout(() => {
+        window.location.href = '../HTML/Dashboard.html';
+    }, 1000);
+    return false;
 
 
     } else {
@@ -55,12 +58,5 @@ document.querySelector('.green-bg').addEventListener('click', async function() {
         alert('Forkert brugernavn eller password. Prøv igen.');
     }
 
-
-
-
-
-    setTimeout(() => {
-        window.location.href = '../HTML/Dashboard.html';
-    }, 1000);
-    return false;
+ 
 });

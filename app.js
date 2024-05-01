@@ -3,19 +3,7 @@ const mssql = require('mssql');
 const cors = require('cors');
 const morgan = require('morgan');
 const app = express();
-const config = require('./config.js');
-
-// Konfiguration af SQL Server-forbindelsesparametre
-/** const config = {
-    user: 'kali', // Erstatt med dit brugernavn
-    password: 'Densortesatan1234', // adgangskode
-    server: 'nutritracker-cbs.database.windows.net', // SQL Server-serveradresse
-    database: 'NutriTracker', // database
-    options: {
-        encrypt: true, // Sørg for at aktivere kryptering
-        trustServerCertificate: true // Brug dette kun, hvis du kører på Windows Azure
-    }
-}; **/
+const config = require('./config');
 
 // Opret en SQL Server-pool
 const pool = new mssql.ConnectionPool(config);
@@ -117,7 +105,7 @@ app.post('/checkLogin', async (req, res) => {
         // Hent antallet af rækker, hvor brugernavn og password matcher
         const matchCount = result.recordset[0].match;
 
-        // Returner resultatet som JSON
+        //Returner resultatet som JSON
         res.json({ match: matchCount === 1 });
     } catch (error) {
         console.error('Fejl ved behandling af login-forespørgsel:', error);
@@ -125,35 +113,17 @@ app.post('/checkLogin', async (req, res) => {
     }
 });
 
-// Dette er for ActivityTracker, hvor vi gør bruge af vores sql database, 
-// for at tilgå data derfra.
-app.get('/api/categories', async (req, res) => {
-    try {
-      const result = await pool.request()
-        .query('SELECT DISTINCT Kategori FROM dbo.aktivitetData');
-      res.json(result.recordset);
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
-  });
-  
-  app.get('/api/activities/:category', async (req, res) => {
-    try {
-      const category = req.params.category;
-      const result = await pool.request()
-        .input('Kategori', mssql.NVarChar, category)
-        .query('SELECT AktivitetsNavn, KcalPerTime FROM dbo.aktivitetData WHERE Kategori = @Kategori');
-      res.json(result.recordset);
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
-  });
+
+const activityTrackerRoutes = require('./Routes/ActivityTrackerRoute');
+app.use('/api', activityTrackerRoutes);
+
+
 
   app.put('/redigerBruger', async (req, res) => {
     try {
         const { username, age, gender, weight, height, password } = req.body;
 
-        // Udfør SQL-opdateringsforespørgsel baseret på brugernavn
+        //SQL-opdateringsforespørgsel baseret på brugernavn
         const query = `
             UPDATE dbo.brugerData
             SET Age = @age,
@@ -183,8 +153,30 @@ app.get('/api/categories', async (req, res) => {
 });
 
 
+// Endpoint til at slette brugerprofilen
+app.delete('/sletProfil', async (req, res) => {
+    try {
+        // Modtag brugernavn fra SletProfil.js
+        const brugernavn = req.body.brugernavn;
 
+        // SQL
+        const query = `
+            DELETE FROM dbo.brugerData
+            WHERE Username = @brugernavn;
+        `;
 
+        //Sender SQL
+        const result = await pool.request()
+            .input('brugernavn', mssql.NVarChar, brugernavn)
+            .query(query);
+
+        //Sender svar til klienten
+        res.json({ message: 'Brugerprofilen blev slettet succesfuldt.' });
+    } catch (error) {
+        console.error('Fejl ved sletning af brugerprofil:', error);
+        res.status(500).json({ message: 'Der opstod en fejl under sletning af brugerprofilen.' });
+    }
+});
 
 
 
