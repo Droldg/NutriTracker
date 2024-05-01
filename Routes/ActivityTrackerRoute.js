@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const mssql = require('mssql'); // Sørg for at mssql er importeret
-const { pool, poolPromise } = require('../database'); // Antager at du har centraliseret din database logik
+const mssql = require('mssql'); 
+const { pool, poolPromise } = require('../database'); 
 
 // Endpoint til at hente kategorier
 router.get('/categories', async (req, res) => {
     try {
-        await poolPromise; // Sikrer at forbindelsen er klar før database forespørgsler udføres
+        await poolPromise; //Sikrer at forbindelsen er klar før database forespørgsler udføres
         const result = await pool.request().query('SELECT DISTINCT Kategori FROM dbo.aktivitetData');
         res.json(result.recordset);
     } catch (error) {
@@ -19,7 +19,7 @@ router.get('/categories', async (req, res) => {
 router.get('/activities/:category', async (req, res) => {
     let category;
     try {
-        await poolPromise; // Sikrer at forbindelsen er klar før database forespørgsler udføres
+        await poolPromise; //Sikrer at forbindelsen er klar før database forespørgsler udføres
         category = req.params.category;
         const result = await pool.request()
             .input('Kategori', mssql.NVarChar, category)
