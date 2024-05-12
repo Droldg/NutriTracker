@@ -1,9 +1,8 @@
-
-
-
+// Funktion der håndterer opdatering af brugerdata
 function opdater(event) {
-    event.preventDefault();
+    event.preventDefault(); // Stopper formens standardindsendelse
 
+    // Her hentes input værdierne fra formularfelterne
     const age = document.getElementById('age').value;
     const gender = document.getElementById('gender').value;
     const weight = document.getElementById('weight').value;
@@ -11,21 +10,22 @@ function opdater(event) {
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
 
+    // Kontrollerer at adgangskoderne matcher
     if (password !== confirmPassword) {
         document.getElementById('fejlTekst').textContent = "Passwords do not match.";
-        return;
+        return; // Afslutter funktionen hvis adgangskoderne ikke matcher
     }
 
-    // Hent brugernavn fra localStorage
-    const parser = JSON.parse(localStorage.getItem('brugerSession'));;
+    // Henter brugernavn fra localStorage
+    const storedSession = localStorage.getItem('brugerSession');
+    const parser = JSON.parse(storedSession);
     const username = parser.brugernavn;
-    console.log(username)
 
-    // Slet fejltekst
+    // Sletter tidligere fejltekster
     document.getElementById('fejlTekst').textContent = "";
 
-    // Dataobjekt
-    const userData = {
+    // Samler brugerdata i et objekt
+    const userData = { 
         username: username,
         age: age,
         gender: gender,
@@ -34,27 +34,37 @@ function opdater(event) {
         password: password
     };
 
-    fetchAndUpdate(userData);
-    return false;
+    // Kalder fetch funktionen med de opdaterede data
+    fetchAndUpdate(userData); 
+    return false; // Returnerer false for at forhindre formen i at indsende data
 }
 
+// Funktion til at sende opdateret brugerdata til serveren via API
 function fetchAndUpdate(userData) {
-    fetch('http://localhost:3000/redigerBruger', {
-        method: 'PUT',
+    fetch('http://localhost:3000/api/redigerBruger', {
+        method: 'PUT', // Bruger PUT metoden til at opdatere data
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json' // Sætter content-type til JSON
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData) // Sender brugerdata som en JSON string
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok'); // Håndterer ikke-OK svaret fra serveren
+        }
+        return response.json(); // Parser svaret til JSON
+    })
     .then(data => {
-        console.log(data.message); // Log server response
-        // Håndter svar fra serveren her
+        // Her håndterer vi succesfuld opdatering
+        console.log(data.message); // Log serverens respons
+        alert('Update successful: ' + data.message); // Displays a confirmation to the user
     })
     .catch(error => {
+        // Håndterer eventuelle fejl under fetch
         console.error('Kan ikke opdatere data:', error);
-        // Håndter fejl
+        alert('Fejl ved opdatering af data: ' + error.message); // Viser en fejlbesked til brugeren
     });
 }
 
+// Tilføjer en event listener til opdateringsknappen
 document.getElementById('knap').addEventListener('click', opdater);

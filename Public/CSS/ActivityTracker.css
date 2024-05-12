@@ -47,3 +47,61 @@
     font-size: 14px;
     color: #999;
 }
+
+
+
+#calculate-calories{
+    background-color: green;
+    border: none;
+    color: white;
+    margin-top: auto;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#calculate-calories:hover {
+    background-color: #91c789;
+}
+
+
+#calories-burned {
+    margin-top: 1vh;
+    line-height: 1vhw;  /* Øger linjeafstanden */
+    margin-bottom: 10px; /* Tilføjer lidt mere plads under overskriften */
+    padding: 5px; /* Tilføjer padding inde i boksen */
+    text-align: center; /* Centrerer teksten */
+}
+
+#total-time-spent{
+    font-size: 1.5vh;
+}
+
+#track-activity {
+    background-color: green;
+    border: none;
+    color: white;
+    margin-top: auto;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#track-activity:hover {
+    background-color: #91c789; /* Lidt mørkere grøn når musen er over */
+}
+
+#user-weight-height{
+    font-size: 1.5vh;
+    margin-top: 0.5vh;
+}

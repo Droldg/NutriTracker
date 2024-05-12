@@ -13,27 +13,25 @@
 <body>
     <div class="app-container">
         <header class="app-header">
-                <h1>
-                    <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
-                </h1>
-                <nav>
-                    <ul>
-                        <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
-                        <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
-                        <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
-                        <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
-                        <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
-                        <li><a href="../HTML/Profil.html">Profile</a></li>
-                        <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
-                    </ul>
-                </nav>
+            <h1>
+                <img src="../PNG/Overskrift.PNG" alt="NutriTracker Logo">
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
+                    <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
+                    <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
+                    <li><a href="../HTML/Profil.html">Profile</a></li>
+                    <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                    <li><a href="../HTML/DailyNutri.html">Daily Nutri</a></li>
+                </ul>
+            </nav>
         </header>
 
         <div class="container">
             <div class="dashboard">
                 <h2>Activity Tracker</h2>
                 <div class="resultat-container">
-                    <!-- Container for activity selection -->
                     <div class="resultat-card">
                         <h3>Activity Options</h3>
                         <select name="activity-options" id="activity-options">
@@ -41,8 +39,6 @@
                             <!-- Her har man mulighed for at vælge mellem de "overall" aktiviteter som man har haft mulighed for fra SQL-databasen. -->
                         </select>
                     </div>
-
-                    <!-- Container for specific activity selection -->
                     <div class="resultat-card">
                         <h3>Specific Activity</h3>
                         <select name="specific-activity-options" id="specific-activity-options">
@@ -52,22 +48,31 @@
                     </div>
 
                     <div class="resultat-card">
-                        <h3>Calories Burned</h3>
-                        <p id="calories-burned">0</p>
-                        <span>kcal/hour</span>
+                        <h3>Duration in hours and minutes</h3>
+                        <div class="duration-inputs">
+                            <input type="number" id="activity-duration-hours" placeholder="Hours (e.g., 2 hours)"
+                                min="0">
+                            <input type="number" id="activity-duration-minutes" placeholder="Minutes (e.g., 30 minutes)"
+                                min="0">
+                            <button id="calculate-calories">Calculate Calories</button>
+                        </div>
                     </div>
 
-                    <!-- Container for weight input -->
                     <div class="resultat-card">
-                        <h3>Change Weight</h3>
-                        <input type="number" id="weight-input" placeholder="Enter weight (kg)">
+                        <h3>Calories Burned:</h3>
+                        <p id="calories-burned">0</p>
+                        <p id="total-time-spent">Duration: 0 hours and 0 minutes</p>
+                        <button id="track-activity">Track Activity</button>
+                    </div>
+                    
+                    <div class="resultat-card">
+                        <h3>Your Current Weight and Height:</h3>
+                        <p id="user-weight-height">Weight: 0 kg, Height: 0 cm</p>
                     </div>
 
-                    <!-- Container for basal metabolism -->
                     <div class="resultat-card">
                         <h3>Basal Metabolism</h3>
-                        <p id="basal-metabolism">0</p>
-                        <span>MJ</span>
+                        <p id="basal-metabolism">0 MJ</p>
                     </div>
                 </div>
             </div>
@@ -75,4 +80,5 @@
     </div>
     <script src="../JS/ActivityTracker.js"></script>
 </body>
+
 </html>

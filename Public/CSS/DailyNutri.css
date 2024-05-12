@@ -1,0 +1,122 @@
+.header-container{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+
+.container {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.daily-nutri {
+  font-family: "Nunito", sans-serif;
+  border: 2px solid #99d9de;
+  border-radius: 10px;
+  width: 1200px;
+  height: auto;
+
+}
+
+.table-header, .table-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  align-items: center;
+  font-size: 18px;
+}
+
+.table-row {
+  background-color: #DEF6D8;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.header-item, .row-item {
+  flex: 1;
+  text-align: center;
+}
+
+
+
+.title {
+  font-size: 45px;
+}
+
+
+
+
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/*https://www.w3schools.com/howto/howto_css_switch.asp */
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .3s;
+  transition: .3;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 5px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #DEF6D8;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+.switchDiv {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+

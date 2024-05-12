@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../CSS/MealCreator.css">
     <link rel="stylesheet" href="../CSS/Navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
-    
+    <script src="../JS/LoginTjek.js"></script>
 </head>
 
 <body>
@@ -19,13 +19,12 @@
             </h1>
             <nav>
                 <ul>
-                    <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
                     <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
                     <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
-                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
                     <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
                     <li><a href="../HTML/Profil.html">Profile</a></li>
                     <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                    <li><a href="../HTML/DailyNutri.html">Daily Nutri</a></li>
                 </ul>
             </nav>
         </header>
@@ -43,16 +42,16 @@
                 <div class="table-header">
                     <div class="header-item"></div>
                     <div class="header-item">Meal Name</div>
-                    <div class="header-item">Total Kcal, Protein, Fat, Fibers,  pr. 100g</div>
+                    <div class="header-item">Nutrients per 100g - Calories, Protein, Fat, Fibers</div>
+                    <div class="header-item">Total Calories, Protein, Fat, Fibers</div>
                     <div class="header-item">Added on</div>
                     <div class="header-item"># Ingredients</div>
                     <div class="header-item"></div>
-
                 </div>
                 <div id="meals-list-container"></div>
             </div>
         </div>
-<script src="../JS/MealCreatorAPI.js"></script>
+        <script src="../JS/MealCreatorSQL.js"></script>
 </body>
 
 </html>

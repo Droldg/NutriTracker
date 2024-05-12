@@ -1,5 +1,8 @@
+// Funktionen SignUp forhindrer standard formularen fra at indsende og håndterer brugerregistrering
 function SignUp() {
-    event.preventDefault();
+    event.preventDefault(); // Forhindrer formens standard indsendelsesadfærd
+
+    // Henter værdier fra formularfelterne
     let navn = document.getElementById("full-name").value;
     let email = document.getElementById("email").value;
     let phoneNumber = document.getElementById("phone-number").value;
@@ -11,11 +14,13 @@ function SignUp() {
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirm-password").value;
 
+    // Tjekker om de indtastede adgangskoder matcher
     if (confirmPassword != password) {
         alert("Passwords do not match");
-        return false; // Stop funktionen hvis adgangskoderne ikke matcher
+        return false; // Stopper funktionen, hvis adgangskoderne ikke matcher
     }
 
+    // Her samles brugerdata i et objekt
     const userData = {
         navn: navn,
         email: email,
@@ -28,65 +33,8 @@ function SignUp() {
         password: password
     };
 
-    // Funktion til at beregne basalstofskiftet for kvinder
-function calculateBasalMetabolismFemale(age, weight, height) {
-    let basalMetabolism;
-  
-    if (age < 3) {
-        basalMetabolism = (0.068 * weight) + (4.28 * height) - 1.73;
-    } else if (age >= 4 && age <= 10) {
-        basalMetabolism = (0.071 * weight) + (0.68 * height) + 1.55;
-    } else if (age >= 11 && age <= 18) {
-        basalMetabolism = (0.035 * weight) + (1.95 * height) + 0.84;
-    } else if (age >= 19 && age <= 30) {
-        basalMetabolism = (0.0615 * weight) + 2.08;
-    } else if (age >= 31 && age <= 60) {
-        basalMetabolism = (0.0364 * weight) + 3.47;
-    } else if (age >= 61 && age <= 75) {
-        basalMetabolism = (0.0386 * weight) + 2.88;
-    } else {
-        basalMetabolism = (0.041 * weight) + 2.61;
-    }
-  
-    return basalMetabolism;
-  }
-
-  // Funktion til at beregne basalstofskiftet for mænd
-function calculateBasalMetabolismMale(age, weight, height) {
-    let basalMetabolism;
-  
-    if (age < 3) {
-        basalMetabolism = (0.0007 * weight) + 6.35 - 2.58;
-    } else if (age >= 4 && age <= 10) {
-        basalMetabolism = (0.082 * weight) + (0.55 * height) + 1.74;
-    } else if (age >= 11 && age <= 18) {
-        basalMetabolism = (0.068 * weight) + (0.57 * height) + 2.16;
-    } else if (age >= 19 && age <= 30) {
-        basalMetabolism = (0.064 * weight) + 2.84;
-    } else if (age >= 31 && age <= 60) {
-        basalMetabolism = (0.0485 * weight) + 3.67;
-    } else if (age >= 61 && age <= 75) {
-        basalMetabolism = (0.0499 * weight) + 2.93;
-    } else {
-        basalMetabolism = (0.035 * weight) + 3.43;
-    }
-  
-    return basalMetabolism;
-  }
-  
-  let basalMetabolism;
-  if (gender === "male") {
-      basalMetabolism = calculateBasalMetabolismMale(age, weight, height);
-  } else {
-      basalMetabolism = calculateBasalMetabolismFemale(age, weight, height);
-  }
-
-  console.log('Basalstofskifte:', basalMetabolism.toFixed(2), 'MJ');
-
-
-
-
-    fetch('http://localhost:3000/checkExistingUser', {
+    // Sender en forespørgsel til serveren for at tjekke, om brugeren allerede findes
+    fetch('http://localhost:3000/api/checkExistingUser', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -99,57 +47,45 @@ function calculateBasalMetabolismMale(age, weight, height) {
     })
     .then(response => response.json())
     .then(data => {
-        // Log svaret fra serveren
         console.log("Server Response:", data);
 
-        // Tjek om brugernavn, telefonnummer eller e-mail allerede eksisterer
+        // Hvis brugernavnet, telefonnummeret eller emailen allerede findes i systemet, vises en fejlmeddelelse
         if (data.count > 0) {
-            // Vis en besked om at brugeren allerede eksisterer
-            //alert('Username, phone number, or email already exists.');
-
+            // Viser en fejlmeddelelse i en dedikeret fejlboks
             document.getElementById("fejlTekst").innerText = "Username, phone number, or email already exists.";
-
-
-
         } else {
-            // Hvis ikke informationerne er det samme, sender det et registerUser kald til express
-            fetch('http://localhost:3000/registerUser', {
+            // Hvis brugeren ikke findes, oprettes der en ny bruger
+            fetch('http://localhost:3000/api/registerUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(userData)
+                body: JSON.stringify(userData) // Sender brugerdata til serveren
             })
-            .then(response => {
+            .then(response => { // Håndterer serverens svar
                 if (!response.ok) {
                     throw new Error('Failed to register user.');
                 }
                 return response.text();
             })
-            .then(data => {
-                // Håndter succesfuld registrering
-                alert(data); // Vis en besked om succes
-                // Ekstra handlinger efter behov (f.eks. omdirigering)
+            .then(data => { // Håndterer serverens svar
+                alert(data); // Succesmeddelelse om at brugeren er registreret
             })
-            .catch(error => {
+            .catch(error => { 
                 console.error('Error registering user:', error);
                 alert('Failed to register user. Please try again later.');
             });
-
-
         }
     })
     .catch(error => {
         console.error('There was an error processing your request:', error);
-        // Vis en fejlbesked til brugeren, hvis der opstår en fejl
         alert('There was an error. Please try again later.');
     });
 
+    // Venter 1 sekund før brugeren omdirigeres til login-siden, giver brugeren tid til at se succesmeddelelsen
     setTimeout(() => {
         window.location.href = '../HTML/Login.html';
     }, 1000);
-    //Venter 1 sekund og går til login siden.
 
-    return false;
-    //Funktionen returnerer false, for at siden ikke genindlæses, hvilket er en default funktion, når man trykker på "submit"/SignUp
+    return false; // Returnerer false for at forhindre standardformular indsendelse og sideopdatering
 }

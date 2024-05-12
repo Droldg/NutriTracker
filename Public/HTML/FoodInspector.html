@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../CSS/FoodInspector.css">
     <link rel="stylesheet" href="../CSS/Navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
-    <script src="../JS/FoodInspectorAPI.js"></script>
+    <script src="../JS/FoodInspectorSQL.js"></script>
+    <script src="../JS/LoginTjek.js"></script>
 </head>
 
 <body>
@@ -19,13 +20,12 @@
             </h1>
             <nav>
                 <ul>
-                    <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
                     <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
                     <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
-                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
                     <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
                     <li><a href="../HTML/Profil.html">Profile</a></li>
                     <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                    <li><a href="../HTML/DailyNutri.html">Daily Nutri</a></li>
                 </ul>
             </nav>
         </header>
@@ -40,7 +40,7 @@
                 
                 <div id="displayContainer" class="product-info">
                     <h2>Food Item: <span class="food-item-name"></span></h2>
-                    <p>Product id: <span class="product-id"></span></p>
+                    <p>Product id: <span id="product-id"></span></p>
                 </div>                
                 <div id="displayNutrition" class="nutrition-info">
                     <h3>Nutrition pr. 100g:</h3>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../CSS/MealTracker.css">
     <link rel="stylesheet" href="../CSS/Navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
+    <script src="../JS/LoginTjek.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -16,13 +17,12 @@
             </h1>
             <nav>
                 <ul>
-                    <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
                     <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
                     <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
-                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
                     <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
                     <li><a href="../HTML/Profil.html">Profile</a></li>
                     <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                    <li><a href="../HTML/DailyNutri.html">Daily Nutri</a></li>
                 </ul>
             </nav>
         </header>
@@ -31,7 +31,7 @@
                 <div class="header-container">
                     <h2 class="meal-tracker-title">Meal Tracker</h2>
                     <div class="button-container">
-                        <button class="plus-button1" onclick="addWaterTracking()">+</button> 
+                        <button class="plus-button1">+</button> 
                         <!--- Det viser en prompt, der spørger brugeren om hvor meget vand de har drukket. Derefter vil dette blive tilføjet, som "meal" til vores "MealTracker"-->
                         <a href="../HTML/MealTracker2.html">
                         <button class="plus-button2">+</button>
@@ -50,6 +50,6 @@
             </div>
         </div>
     </div>  
-    <script src="../JS/MealTrackerAPI.js"></script>
+    <script src="../JS/MealTrackerSQL.js"></script>
 </body>
 </html>

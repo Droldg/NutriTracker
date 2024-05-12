@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriTracker Meal Creator 2</title>
+    <title>NutriTracker Meal Tracker 2</title>
     <link rel="stylesheet" href="../CSS/MealTracker2.css">
     <link rel="stylesheet" href="../CSS/Navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&display=swap">
+    <script src="../JS/LoginTjek.js"></script>
 </head>
+
 <body>
     <div class="app-container">
         <header class="app-header">
@@ -16,33 +19,57 @@
             </h1>
             <nav>
                 <ul>
-                    <li class="active"><a href="../HTML/Dashboard.html">Dashboard</a></li>
                     <li><a href="../HTML/MealCreator.html">Meal Creator</a></li>
                     <li><a href="../HTML/MealTracker.html">Meal Tracker</a></li>
-                    <li><a href="../HTML/MealReport.html">Nutri Report</a></li>
                     <li><a href="../HTML/FoodInspector.html">Food Inspector</a></li>
                     <li><a href="../HTML/Profil.html">Profile</a></li>
-                    <li><a href="../HTML/ActivityTracker.html">Acitvity Tracker</a></li>
+                    <li><a href="../HTML/ActivityTracker.html">Activity Tracker</a></li>
+                    <li><a href="../HTML/DailyNutri.html">Daily Nutri</a></li>
                 </ul>
             </nav>
         </header>
-    
+
         <div class="container">
             <div class="layout">
                 <h2 class="title">Meal Tracker - Track your already made Meals.</h2>
-                <form id="mealTrackerForm">
-                <p class="MealName">Name the meal made in Meal Creator: <input type="text" placeholder="Meal Name..." id="mealNameInput"></p>
-                <p class="Water">How much Water did you drink in Liters (L)?: <input type="text" placeholder="0,5" id="waterInput"></p>
-                <p class="MealTime">What kind of meal is this? <input type="text" placeholder="Lunch, Dinner, Breakfast " id="mealTypeInput"></p>
-                <p class="Grams">How many grams of the meal are you eating?(in grams)
-                    <input type="text" placeholder="For Example, 500..." id="gramsInput">
-                </p> <!-- De mange id'er der bliver anvendt er alle fra min JS Fil, som er linket/refereret til øverst på html siden.-->
-                    <button type="submit" id="saveMealButton">Save Meal</button>
-                    <a href="../HTML/MealTracker.html" class="button">Back to Meal Tracker Menu</a>
+                <form id="trackMealForm">
+                    <p class="MealName">Select the meal made in Meal Creator:
+                        <select id="mealNameDropdown" placeholder="Select Meal...">
+                            <option value="" disabled selected>Select Meal</option>
+                            <!-- Flere muligheder vil blive dynamisk tilføjet her -->
+                        </select>
 
-                    </a>
+                    </p>
+                    <p class="Water">How much Water did you drink in Liters (L)?:
+                        <input type="text" placeholder="0.5" id="waterInput">
+                    </p>
+                    <p class="MealTime">What kind of meal is this?:
+                        <input type="text" placeholder="Lunch, Dinner, Breakfast..." id="mealTypeInput">
+                    </p>
+                    <p class="Grams">How many grams of the meal are you eating?(in grams):
+                        <input type="text" placeholder="For example, 500..." id="gramsInput"> <button type="submit" id="saveMealButton">Track Meal</button>
+                    </p>
+                    <!-- Additional fields for single ingredient tracking -->
+                    <div class="ingredientTracking">
+                        <p>Track a single food item:</p>
+                        <p>
+                            <label for="ingredientSearch">Ingredient Name: </label>
+                            <input id="ingredientSearch" list="ingredientSuggestions" placeholder="Search Ingrediens..." autocomplete="off">
+                            <datalist id="ingredientSuggestions"></datalist>
+                        </p>
+                        <p>Meal Type for single Ingredient: <input type="text" id="ingredientMealTypeInput" placeholder="Snack, Dinner, Breakfast..."></p>
+                        <p>Ingredient Grams:
+                            <input type="text" placeholder="Grams" id="ingredientGramsInput"> <button type="button" id="trackIngredient">Track Ingredient</button>
+                        </p>
+                    </div>
+                    
+                    
+                    <a href="../HTML/MealTracker.html" class="button">Back to Meal Tracker Menu</a>
+                </form>
             </div>
         </div>
-        <script src="../JS/MealTracker2API.js"></script>
+        <script src="../JS/MealTracker2SQL.js"></script>
+    </div>
 </body>
+
 </html>

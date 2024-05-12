@@ -1,29 +1,27 @@
+// Denne DOM bruges til login-funktionaliteten
 document.addEventListener('DOMContentLoaded', function() {
-    
+    // Tjekker om der allerede er gemt en brugersession (altså username) i localStorage
     if (localStorage.getItem('brugerSession')) {
-        // Brugersessionen findes i local storage
+        // Hvis der findes en session, parse den gemte data og omdiriger til DailyNutri
         const brugerSession = JSON.parse(localStorage.getItem('brugerSession'));
         const brugernavn = brugerSession.brugernavn;
         console.log('Brugernavn:', brugernavn);
-      
-           window.location.href = '../HTML/Dashboard.html';
-
-
+        window.location.href = '../HTML/DailyNutri.html';
     } else {
-        // Der er ingen brugersession gemt i local storage
+        // Hvis der ikke findes en session, log dette i konsollen
         console.log('Ingen brugersession fundet.');
     }
 });
 
-
+// Håndterer klik på login-knappen
 document.querySelector('.green-bg').addEventListener('click', async function() {
-    event.preventDefault();
-    // Hent værdier fra inputfelterne
+    event.preventDefault(); // Forhindrer standardformularindsendelsen
+    // Henter brugernavn og adgangskode fra inputfelterne
     const username = document.querySelector('.username').value;
     const password = document.querySelector('.password').value;
 
-    // fetch-anmodning til server
-    const response = await fetch('http://localhost:3000/checkLogin', {
+    // Sender en POST-anmodning til serveren for at tjekke gyldigheden af login-oplysningerne
+    const response = await fetch('http://localhost:3000/api/checkLogin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -34,29 +32,23 @@ document.querySelector('.green-bg').addEventListener('click', async function() {
         })
     });
 
-    // Konverter svaret til JSON-format
+    // Parser svaret fra serveren som JSON
     const data = await response.json();
 
-    // Tjek om brugernavn og password matcher
+    // Tjekker om brugernavn og password matcher det i databasen
     if (data.match) {
-    // Brugernavn og password er korrekt
+        // Hvis match er sandt, logges brugeren ind
         console.log('Log ind succesfuldt!');
-        
         let brugerSession = { brugernavn: username };
-
-    // Gem brugerSession i local storage
-    localStorage.setItem('brugerSession', JSON.stringify(brugerSession));
-
-    setTimeout(() => {
-        window.location.href = '../HTML/Dashboard.html';
-    }, 1000);
-    return false;
-
-
+        // Gemmer brugerens session i local storage
+        localStorage.setItem('brugerSession', JSON.stringify(brugerSession));
+        // Omdiriger til DailyNutri efter 1 sekund
+        setTimeout(() => {
+            window.location.href = '../HTML/DailyNutri.html';
+        }, 1000);
+        return false;
     } else {
-        // Brugernavn og password matcher ikke
+        // Hvis brugernavn og password ikke matcher, vises en fejlmeddelelse
         alert('Forkert brugernavn eller password. Prøv igen.');
     }
-
- 
 });

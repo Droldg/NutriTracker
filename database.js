@@ -7,7 +7,10 @@ pool.on('error', err => {
 });
 
 const poolPromise = pool.connect()
-    .then(() => console.log('Du er nu forbindelse til databasen...'))
+    .then(() => {
+        console.log('Du er nu forbundet til databasen...');
+        return pool;
+    })
     .catch(err => {
         console.error('Der kan ikke oprettes forbindelse til databasen!:', err);
         process.exit(1); // Stop programmet, hvis databasen ikke kan forbindes

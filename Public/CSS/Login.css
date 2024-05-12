@@ -24,13 +24,13 @@
 .login-container input[type="password"] {
     width: 100%;
     padding: 1vh;
-    margin-bottom: 1vh;
+    margin-bottom: 0.60vh;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
 
 .login-container input[type="submit"] {
-    margin-top: 2.5vh;
+    margin-top: 1vh;
     padding: 1vh;
     background-color: #91c789;
     color: white;
@@ -82,4 +82,11 @@
 }
 .login {
     color: blue;
+}
+
+
+
+
+#knap:hover {
+    background-color: green;
 }
