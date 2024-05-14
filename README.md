@@ -12,7 +12,3 @@ For at starte Express-serveren:
 ```
 node app.js
 ```
-### Compatibility
-Testet i:
-+ Windows 10/11
-+ Linux (debian)
