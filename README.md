@@ -8,12 +8,12 @@ For at starte Express-serveren:
 Navigér til mappen med basekodens indhold,
 Skriv node app.js i terminalen
 
-## Kommandoer
+## Commands
 ```
 node app.js
 
 ```
-### Kompatibilitet
+### Compatibility
 Testet i:
->Windows 10/11
-Linux (debian)
++ Windows 10/11
++ Linux (debian)
